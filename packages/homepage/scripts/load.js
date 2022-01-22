@@ -2,7 +2,7 @@
  * @Author: Kanata You 
  * @Date: 2022-01-23 00:18:52 
  * @Last Modified by: Kanata You
- * @Last Modified time: 2022-01-23 00:51:19
+ * @Last Modified time: 2022-01-23 01:12:14
  */
 
 const fs = require('fs');
@@ -35,20 +35,21 @@ const main = async () => {
       }
 
       const p = `/root/repos/kyusho/packages/homepage/build/${fn}`;
-      execSync(`cp ${p} /root/apps/homepage/${nextId}/${p} -r`);
+      execSync(`cp ${p} /root/apps/homepage/${nextId}/${fn} -r`);
     });
 
     fs.readdirSync('/root/repos/kyusho/packages/homepage/build/static').forEach(fn => {
       const p = `/root/repos/kyusho/packages/homepage/build/static/${fn}`;
+      const t = `/root/static/${fn}`;
       
-      if (fs.existsSync(p)) {
-        fs.rmSync(p, {
+      if (fs.existsSync(t)) {
+        fs.rmSync(t, {
           recursive: true,
           force: true
         });
       }
       
-      execSync(`cp ${p} /root/static/${nextId}/${p} -r`);
+      execSync(`cp ${p} ${t} -r`);
     });
 
     fs.writeFileSync(headFile, `${nextId}`, {

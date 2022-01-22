@@ -2,7 +2,7 @@
  * @Author: Kanata You 
  * @Date: 2022-01-22 20:45:52 
  * @Last Modified by: Kanata You
- * @Last Modified time: 2022-01-23 00:33:19
+ * @Last Modified time: 2022-01-23 01:22:54
  */
 
 const express = require('express');
@@ -22,7 +22,7 @@ const main = async () => {
 
     app.use(bodyParser.json());
 
-    app.use(express.static('/root/static'));
+    app.use('/static', express.static('/root/static'));
 
     useRouters(app);
 

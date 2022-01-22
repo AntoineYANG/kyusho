@@ -2,10 +2,11 @@
  * @Author: Kanata You 
  * @Date: 2022-01-22 21:05:05 
  * @Last Modified by: Kanata You
- * @Last Modified time: 2022-01-23 00:27:22
+ * @Last Modified time: 2022-01-23 01:18:48
  */
 
 const fs = require('fs/promises');
+const { readFileSync } = require('fs');
 const path = require('path');
 
 const logger = require('../utils/logger');
@@ -13,7 +14,7 @@ const logger = require('../utils/logger');
 
 const headFile = `/root/apps/homepage/head`;
 
-let curId = parseInt(fs.readFileSync(
+let curId = parseInt(readFileSync(
   headFile, {
     encoding: 'utf-8'
   }
@@ -29,14 +30,14 @@ const getResourcePath = p => {
   if (time >= lastCheck + checkInterval) {
     lastCheck = time;
 
-    curId = parseInt(fs.readFileSync(
+    curId = parseInt(readFileSync(
       headFile, {
         encoding: 'utf-8'
       }
     ).split('\n')[0]);
   }
 
-  return path.join('/root/apps/homepage', curId, p);
+  return path.join('/root/apps/homepage', `${curId}`, p);
 };
 
 /** @type {import('../typings/config.d').RouteConfig} */

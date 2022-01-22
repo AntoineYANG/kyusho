@@ -2,7 +2,7 @@
  * @Author: Kanata You 
  * @Date: 2022-01-22 23:56:11 
  * @Last Modified by: Kanata You
- * @Last Modified time: 2022-01-23 00:55:43
+ * @Last Modified time: 2022-01-23 01:02:01
  */
 
 const fs = require('fs');
@@ -35,7 +35,7 @@ const main = async () => {
       }
 
       const p = `/root/repos/kyusho/packages/server/src/${fn}`;
-      execSync(`cp ${p} /root/apps/server/${nextId}/${p} -r`);
+      execSync(`cp ${p} /root/apps/server/${nextId}/${fn} -r`);
     });
 
     fs.writeFileSync(headFile, `${nextId}`, {
