@@ -2,12 +2,11 @@
  * @Author: Kanata You 
  * @Date: 2022-01-22 21:44:14 
  * @Last Modified by: Kanata You
- * @Last Modified time: 2022-01-22 23:20:37
+ * @Last Modified time: 2022-01-22 23:46:35
  */
 
 const fs = require('fs');
-const path = require('path');
-const { sync: mkdirp } = require('mkdirp');
+const { execSync } = require('child_process');
 
 const logger = require('../utils/logger');
 
@@ -28,6 +27,7 @@ fs.readFileSync(
   }
 });
 
+
 /** @type {import('../typings/config.d').RouteConfig} */
 const config = {
   path: '/deploy',
@@ -36,7 +36,7 @@ const config = {
     /** @type {import('../typings/deploy.d').DeployBody} */
     const body = req.body;
     
-    if (['admin', 'pwd', 'data[name]', 'data[raw]'].find(k => !Boolean(body[k]))) {
+    if (['admin', 'pwd'].find(k => !Boolean(body[k]))) {
       return res.status(400).json({
         reason: 'Bad request body'
       });
@@ -47,19 +47,14 @@ const config = {
         reason: 'Forbidden'
       });
     }
-    
-    const file = path.join('~/apps', body['data[name]']);
-    const dir = path.join(file, '..');
-    
-    if (!fs.existsSync(dir)) {
-      mkdirp(dir);
-    }
 
     try {
-      fs.writeFileSync(file, body['data[raw]']);
+      execSync(`cd ~/repos/kyusho & git pull origin main`);
+
+      execSync(`node ~/repos/kyusho/scripts/load.js`);
     } catch (error) {
       logger.reportError(error, {
-        file: body['data[name]']
+        app: body.app
       });
 
       return res.status(500).json({

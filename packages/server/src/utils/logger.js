@@ -2,10 +2,11 @@
  * @Author: Kanata You 
  * @Date: 2022-01-22 21:31:22 
  * @Last Modified by: Kanata You
- * @Last Modified time: 2022-01-22 21:58:21
+ * @Last Modified time: 2022-01-22 23:47:23
  */
 
 const fs = require('fs');
+const { sync: mkdirp } = require('mkdirp');
 
 
 /**
@@ -14,6 +15,11 @@ const fs = require('fs');
  */
 const reportError = (err, data) => {
   const now = new Date();
+  
+  if (!fs.existsSync(`~/logs/errors`)) {
+    mkdirp(`~/logs/errors`);
+  }
+
   const output = `~/logs/errors/${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}.log`;
   const info = `[${now.toISOString()}]\n${JSON.stringify(
     {

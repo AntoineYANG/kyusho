@@ -1,6 +1,7 @@
 {
   "name": "server",
   "version": "0.1.0",
+  "buildId": 1,
   "description": "NodeJS server.",
   "keywords": [],
   "scripts": {},

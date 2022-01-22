@@ -2,13 +2,42 @@
  * @Author: Kanata You 
  * @Date: 2022-01-22 21:05:05 
  * @Last Modified by: Kanata You
- * @Last Modified time: 2022-01-22 21:58:35
+ * @Last Modified time: 2022-01-23 00:27:22
  */
 
 const fs = require('fs/promises');
+const path = require('path');
 
 const logger = require('../utils/logger');
 
+
+const headFile = `~/apps/homepage/head`;
+
+let curId = parseInt(fs.readFileSync(
+  headFile, {
+    encoding: 'utf-8'
+  }
+).split('\n')[0]);
+
+let lastCheck = Date.now();
+
+const checkInterval = 1000 * 10;
+
+const getResourcePath = p => {
+  const time = Date.now();
+
+  if (time >= lastCheck + checkInterval) {
+    lastCheck = time;
+
+    curId = parseInt(fs.readFileSync(
+      headFile, {
+        encoding: 'utf-8'
+      }
+    ).split('\n')[0]);
+  }
+
+  return path.join('~/apps/homepage', curId, p);
+};
 
 /** @type {import('../typings/config.d').RouteConfig} */
 const config = {
@@ -18,7 +47,7 @@ const config = {
     res.writeHead(200, { 'Content-Type': 'text/html' });
 
     fs.readFile(
-      '~/apps/homepage/index.html', {
+      getResourcePath('index.html'), {
         encoding: 'utf-8'
       }
     ).then(data => {
