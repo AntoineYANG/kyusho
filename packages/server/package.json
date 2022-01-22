@@ -1,0 +1,40 @@
+{
+  "name": "server",
+  "version": "0.1.0",
+  "description": "NodeJS server.",
+  "keywords": [],
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AntoineYANG/kyusho.git",
+    "directory": "packages/server"
+  },
+  "author": "kanatayou",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16"
+  },
+  "bugs": {
+    "url": "https://github.com/AntoineYANG/kyusho/issues"
+  },
+  "homepage": "https://github.com/AntoineYANG/kyusho/blob/main/packages/server/README.md",
+  "main": "./bin/index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "README-*.md",
+    "CHANGELOG-*.md",
+    "/bin/",
+    "lib"
+  ],
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2",
+    "mkdirp": "^1.0.4"
+  },
+  "devDependencies": {
+    "needle": "^3.0.0"
+  },
+  "peerDependencies": {},
+  "peerDependenciesMeta": {}
+}

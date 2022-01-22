@@ -1,0 +1,34 @@
+{
+  "name": "homepage",
+  "version": "0.1.0",
+  "description": "NodeJS homepage.",
+  "keywords": [],
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AntoineYANG/kyusho.git",
+    "directory": "packages/homepage"
+  },
+  "author": "kanatayou",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16"
+  },
+  "bugs": {
+    "url": "https://github.com/AntoineYANG/kyusho/issues"
+  },
+  "homepage": "https://github.com/AntoineYANG/kyusho/blob/main/packages/homepage/README.md",
+  "main": "./bin/index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "README-*.md",
+    "CHANGELOG-*.md",
+    "/bin/",
+    "lib"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {},
+  "peerDependenciesMeta": {}
+}
