@@ -11,7 +11,7 @@ const path = require('path');
 const logger = require('../utils/logger');
 
 
-const headFile = `~/apps/homepage/head`;
+const headFile = `/root/apps/homepage/head`;
 
 let curId = parseInt(fs.readFileSync(
   headFile, {
@@ -36,7 +36,7 @@ const getResourcePath = p => {
     ).split('\n')[0]);
   }
 
-  return path.join('~/apps/homepage', curId, p);
+  return path.join('/root/apps/homepage', curId, p);
 };
 
 /** @type {import('../typings/config.d').RouteConfig} */

@@ -2,7 +2,7 @@
  * @Author: Kanata You 
  * @Date: 2022-01-22 21:44:14 
  * @Last Modified by: Kanata You
- * @Last Modified time: 2022-01-22 23:46:35
+ * @Last Modified time: 2022-01-23 00:39:55
  */
 
 const fs = require('fs');
@@ -14,7 +14,7 @@ const logger = require('../utils/logger');
 const admins = {};
 
 fs.readFileSync(
-  '~/configs/admin', {
+  '/root/configs/admin', {
     encoding: 'utf-8'
   }
 ).split('\n').forEach(line => {
@@ -49,9 +49,13 @@ const config = {
     }
 
     try {
-      execSync(`cd ~/repos/kyusho & git pull origin main`);
+      execSync(`git pull origin main`, {
+        cwd: '/root/repos/kyusho'
+      });
 
-      execSync(`node ~/repos/kyusho/scripts/load.js`);
+      execSync(`node /root/repos/kyusho/scripts/load.js`, {
+        cwd: '/root/repos/kyusho'
+      });
     } catch (error) {
       logger.reportError(error, {
         app: body.app

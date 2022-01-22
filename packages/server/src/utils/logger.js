@@ -16,11 +16,11 @@ const { sync: mkdirp } = require('mkdirp');
 const reportError = (err, data) => {
   const now = new Date();
   
-  if (!fs.existsSync(`~/logs/errors`)) {
-    mkdirp(`~/logs/errors`);
+  if (!fs.existsSync(`/root/logs/errors`)) {
+    mkdirp(`/root/logs/errors`);
   }
 
-  const output = `~/logs/errors/${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}.log`;
+  const output = `/root/logs/errors/${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}.log`;
   const info = `[${now.toISOString()}]\n${JSON.stringify(
     {
       ...data,

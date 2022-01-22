@@ -22,7 +22,7 @@ const main = async () => {
 
     app.use(bodyParser.json());
 
-    app.use(express.static('~/static'));
+    app.use(express.static('/root/static'));
 
     useRouters(app);
 

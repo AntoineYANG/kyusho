@@ -2,7 +2,7 @@
  * @Author: Kanata You 
  * @Date: 2022-01-23 00:18:52 
  * @Last Modified by: Kanata You
- * @Last Modified time: 2022-01-23 00:31:55
+ * @Last Modified time: 2022-01-23 00:51:19
  */
 
 const fs = require('fs');
@@ -10,11 +10,11 @@ const { execSync } = require('child_process');
 const { sync: mkdirp } = require('mkdirp');
 
 
-const target = '~/apps/homepage';
+const target = '/root/apps/homepage';
 
 const headFile = `${target}/head`;
 
-const incoming = `~/repos/kyusho/packages/homepage/package.json`;
+const incoming = `/root/repos/kyusho/packages/homepage/package.json`;
 
 
 const main = async () => {
@@ -27,19 +27,19 @@ const main = async () => {
   const nextId = require(incoming).buildId ?? 0;
 
   if (nextId > curId) {
-    mkdirp(`~/apps/homepage/${nextId}`);
+    mkdirp(`/root/apps/homepage/${nextId}`);
 
-    fs.readdirSync('~/repos/kyusho/packages/homepage/build').forEach(fn => {
+    fs.readdirSync('/root/repos/kyusho/packages/homepage/build').forEach(fn => {
       if (fn === 'static' || fn === '.git') {
         return;
       }
 
-      const p = `~/repos/kyusho/packages/homepage/build/${fn}`;
-      execSync(`cp ${p} ~/apps/homepage/${nextId}/${p} -r`);
+      const p = `/root/repos/kyusho/packages/homepage/build/${fn}`;
+      execSync(`cp ${p} /root/apps/homepage/${nextId}/${p} -r`);
     });
 
-    fs.readdirSync('~/repos/kyusho/packages/homepage/build/static').forEach(fn => {
-      const p = `~/repos/kyusho/packages/homepage/build/static/${fn}`;
+    fs.readdirSync('/root/repos/kyusho/packages/homepage/build/static').forEach(fn => {
+      const p = `/root/repos/kyusho/packages/homepage/build/static/${fn}`;
       
       if (fs.existsSync(p)) {
         fs.rmSync(p, {
@@ -48,7 +48,7 @@ const main = async () => {
         });
       }
       
-      execSync(`cp ${p} ~/static/${nextId}/${p} -r`);
+      execSync(`cp ${p} /root/static/${nextId}/${p} -r`);
     });
 
     fs.writeFileSync(headFile, `${nextId}`, {

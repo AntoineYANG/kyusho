@@ -8,7 +8,7 @@
 const { execSync } = require('child_process');
 
 
-const cli = '~/test/node_modules/espoir-cli/bin/index.js';
+const cli = '/root/test/node_modules/espoir-cli/bin/index.js';
 
 const main = () => {
   execSync(`node ${cli} run server.load`);
